@@ -1,4 +1,4 @@
-# IWM/SWIM Analyzer
+# IWM/SWIM Protocol Analyzer
 
 This PIC16F1704 firmware interprets data from the RD and WR lines on the Macintosh's IWM/SWIM chip and translates them to a simple UART protocol for analysis.  This project also includes a PCB and Python code to interpret the output of the firmware.
 
@@ -113,11 +113,11 @@ The DCD analyzer is used to analyze the data read from and written to DCD (Direc
 
 The DCD analyzer outputs the following files:
 
-| Suffix                    | Contents                                                                                                |
-| ------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `.log`                    | Same as the data written to stdout.                                                                     |
-| `_serial.bin`             | All data read from the serial port.                                                                     |
-| `_trans_99999999_ddd.bin` | All data in the numbered (99999999) transaction.  `dd` indicates the source direction (`mac` or `dcd`). |
-| `_data_99999999_ddd.bin`  | Data in the numbered (99999999) data payload.  `dd` indicates the source direction (`mac` or `dcd`).    |
+| Suffix                    | Contents                                                                                                 |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `.log`                    | Same as the data written to stdout.                                                                      |
+| `_serial.bin`             | All data read from the serial port.                                                                      |
+| `_trans_99999999_ddd.bin` | All data in the numbered (99999999) transaction.  `ddd` indicates the source direction (`mac` or `dcd`). |
+| `_data_99999999_ddd.bin`  | Data in the numbered (99999999) data payload.  `ddd` indicates the source direction (`mac` or `dcd`).    |
 
 "Transaction" is used to mean a sequence of data bordered by a delay of 0.25 seconds or more.
