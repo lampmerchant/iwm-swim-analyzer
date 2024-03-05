@@ -113,11 +113,11 @@ The DCD analyzer is used to analyze the data read from and written to DCD (Direc
 
 The DCD analyzer outputs the following files:
 
-| Suffix                    | Contents                                                                                                 |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `.log`                    | Same as the data written to stdout.                                                                      |
-| `_serial.bin`             | All data read from the serial port.                                                                      |
-| `_trans_99999999_ddd.bin` | All data in the numbered (99999999) transaction.  `ddd` indicates the source direction (`mac` or `dcd`). |
-| `_data_99999999_ddd.bin`  | Data in the numbered (99999999) data payload.  `ddd` indicates the source direction (`mac` or `dcd`).    |
+| Suffix                   | Contents                                                                                              |
+| ------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `.log`                   | Same as the data written to stdout.                                                                   |
+| `_serial.bin`            | All data read from the serial port.                                                                   |
+| `_trans_99999999.bin`    | All data in the numbered (99999999) transaction.                                                      |
+| `_data_99999999_ddd.bin` | Data in the numbered (99999999) data payload.  `ddd` indicates the source direction (`mac` or `dcd`). |
 
 "Transaction" is used to mean a sequence of data bordered by a delay of 0.25 seconds or more.
