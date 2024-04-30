@@ -64,6 +64,31 @@ The firmware looks for a pattern of 60 or more consecutive 0 bits in order to sy
 To indicate index, address, and data marks, MFM uses special versions of the 0xC2 and 0xA1 bytes, with ordinarily-required clock bits missing.  The firmware relays these as ordinary 0xC2 and 0xA1 bytes and their significance must be inferred from context.
 
 
+## PCB Quick Start
+
+Connect the lower 2x10 header to the Macintosh and the upper 2x10 header to the device under test.  The two-pin header between the two 2x10 headers is intended to support use cases where the !ENBL signal used by the device under test comes from somewhere other than the host Macintosh.  For most use cases, these pins should be bridged.
+
+The pins from the three-pin header (labelled 5, G, and T) are intended to be connected to a TTL-level serial interface of some kind, such as [this](https://www.sparkfun.com/products/9716).  The '5' pin is connected to the 5V supply from the Macintosh, the 'G' pin to the ground from the Macintosh, and the 'T' pin to the serial output from the analyzer PIC.
+
+To analyze DCD protocol:
+
+* Set the 'Proto' switch to 'GCR'.
+* Set the 'GPi' switch to 'CA0'.
+* Follow the instructions in the below Python Analyzers section for the DCD analyzer.
+
+To analyze GCR disk protocol:
+
+* Set the 'Proto' switch to 'GCR'.
+* Set the 'GPi' switch to 'WRQ'.
+* Follow the instructions in the below Python Analyzers section for the GCR analyzer.
+
+To analyze MFM disk protocol:
+
+* Set the 'Proto' switch to 'MFM'.
+* The position of the 'GPi' switch is ignored.
+* This repository does not contain a Python analyzer for MFM as of the time of this writing - raw MFM data can instead be logged from the serial port at 1 MHz and examined using a hex editor.
+
+
 ## Python Analyzers
 
 ### Quick Start
