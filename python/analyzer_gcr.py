@@ -164,7 +164,7 @@ class Analyzer:
   def _log(self, log_num, log_dir, log_tell, msg):
     self._log_ts('%08d %s %08d: %s' % (log_num, 'rd' if log_dir else 'wr', log_tell, msg))
   
-  def _log_data_mark(self, log_num, log_dir, log_tell, track, sector, size, fmt, data):
+  def _log_data_mark(self, log_num, log_dir, log_tell, track, sector, side, fmt, data):
     self._cur_data_mark += 1
     self._log(log_num, log_dir, log_tell, 'DM  %08d' % self._cur_data_mark)
     with open('%s_data_%08d_%s.bin' % (self._file_prefix, self._cur_data_mark, 'rd' if log_dir else 'wr'), 'wb') as fp:
@@ -177,7 +177,7 @@ class Analyzer:
   
   def analyze(self):
     try:
-      track = sector = size = fmt = None
+      track = sector = side = fmt = None
       while True:
         _, _, _, sig = self._peek_window(3)
         if sig == b'\xD5\xAA\x96':
@@ -241,7 +241,7 @@ class Analyzer:
           if target_checksum != actual_checksum:
             self._log(win_num, win_dir, win_tell, 'DM  BAD CHECKSUM: %s, should be %s' % (actual_checksum, target_checksum))
             continue
-          self._log_data_mark(win_num, win_dir, win_tell, track, sector, size, fmt, data)
+          self._log_data_mark(win_num, win_dir, win_tell, track, sector, side, fmt, data)
         else:
           self._pop_window(1)
     except KeyboardInterrupt:
